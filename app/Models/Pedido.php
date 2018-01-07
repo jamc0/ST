@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB as DB;
-use App\Models\DetallePedido;
+use App\Models\GuiaRemision;
 
 class Pedido extends Model
 {
-    protected $table = 'pedidos';
+    protected $table = 'guia_remision';
     public $primarykey = 'id';
 
  
-	public static function GuardarBoleta($datos, $codigo_usuario)
+	public static function GuardarFactura($datos, $codigo_usuario)
 	{
 		try {
     		
