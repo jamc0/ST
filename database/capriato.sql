@@ -22,11 +22,86 @@ SET time_zone = "+00:00";
 -- Base de datos: `capriato`
 --
 
--- --------------------------------------------------------
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Estructura de tabla para la tabla `carga`
+-- Volcado de datos para la tabla `users`
 --
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin@gmail.com', '$2y$10$KjEaatAjWVYdPBSNcQJyO.DNcBZAemKYeq62R2WPiBf66LGxWzMP.', 'Adz0bm2GwTnAitksMMWjQavAHQIkqbP5sWjjloSRvseBRsrgngTkPZAGiAVg', '2017-10-30 05:35:15', '2017-10-30 05:35:15');
+
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `roles_name_unique` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'Administrador', 'El que administra', NULL, '2017-10-30 05:39:11');
+
+
+DROP TABLE IF EXISTS `permission_role`;
+CREATE TABLE IF NOT EXISTS `permission_role` (
+  `permission_id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`permission_id`,`role_id`),
+  KEY `permission_role_role_id_foreign` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+DROP TABLE IF EXISTS `role_user`;
+CREATE TABLE IF NOT EXISTS `role_user` (
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`),
+  KEY `role_user_role_id_foreign` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `role_user` (`user_id`, `role_id`) VALUES (1, 1);
+
+
+DROP TABLE IF EXISTS `permissions`;
+CREATE TABLE IF NOT EXISTS `permissions` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `permissions_name_unique` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+DROP TABLE IF EXISTS `password_resets`;
+CREATE TABLE IF NOT EXISTS `password_resets` (
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 DROP TABLE IF EXISTS `carga`;
 CREATE TABLE IF NOT EXISTS `carga` (
@@ -97,6 +172,7 @@ INSERT INTO `carga` (`id`, `id_guia`, `descripcion`, `cantidad`, `u_medida`, `pe
 (0000050, 0000812, 'PATINES CON LLANTAS DE AVION', 2, 'T', '5.50'),
 (0000051, 0000812, 'GRILLETES DE DIFERENTES MEDIDAS', 14, 'kg', '47.00'),
 (0000052, 0000812, 'ESTROBOS', 3, 'kg', '36.00');
+
 
 -- --------------------------------------------------------
 
@@ -198,14 +274,14 @@ INSERT INTO `cliente` (`RUC`, `razon_social`, `direccion`, `email`, `telefono`) 
 ('20516456001', 'VARADERO ANDESA S.A.', 'CALETA TIERRA COLORADA, PAITA, PIURA', 'jpajares@varaderoandesa.com', '073211033'),
 ('20445417263', 'INVERSIONES GANDER E.I.R.L.', 'Jr. Buenos Aires Nro. 380 A.H. el Progreso, Ancash, Perú', NULL, '43327564'),
 ('20330862450', 'COMPAÑIA PESQUERA DEL PACIFICO CENTRO S.A.', 'Av. Del Parque Norte Nº 1112 Urb.Corpac- San Borja', 'cppc@pacificocentro.com.pe', '012256700'),
-('20445291731', 'FACTORIA AGROMAR S.A.C.', ' Jr. Tacna # 248 Florida Baja  Chimbote', 'factoria_agromarsac@hotmail.com', ' 43350532'),
-('20531854871', 'ASTILLERO LUGUENSI', ' AV. Los Pescadores Mz. \"K\" Lote 4 - Zona Industrial- 27 De Octubre - Chimbote, Ancash, Perú.', 'astillero@luguensi.com', '43350758'),
+('20445291731', 'FACTORIA AGROMAR S.A.C.', ' Jr. Tacna # 248 Florida Baja  Chimbote', 'factoria_agromarsac@hotmail.com', ' 43350532'),
+('20531854871', 'ASTILLERO LUGUENSI', ' AV. Los Pescadores Mz. \"K\" Lote 4 - Zona Industrial- 27 De Octubre - Chimbote, Ancash, Perú.', 'astillero@luguensi.com', '43350758'),
 ('20514863408', 'INDUSTRIAS BELSA S.A.C.', 'Pj. a Nro. S/n Int. 45 Mcdo.Productores , Santa Anita, Lima', NULL, '013543257'),
 ('20107759736', 'CONSTRUCCIONES Y REPARACIONES MARINAS S.A.C.', 'Av. Manuel Olguin Nro. 211 Int. 1202, Santiago de Surco, Lima', NULL, '014215778'),
 ('20231190644', 'ASTILLEROS DON FERNANDO', 'Avenida Los Pescadores 354 P.J. 27 De Octubre', NULL, '01351039'),
 ('20530596193', 'VARAJES BAZALAR E.I.R.L', 'Av. Luna Arrieta Nro. S/n Ba. Puerto de Huacho (Fte a la Capitania del Puerto de Huacho), Lima, Peru', NULL, '018681628'),
 ('10175946247', 'ASTILLERO EL NAZARENO', 'Carretera Chiclayo - San Jose Sector Gallito, Lambayeque, Peru', NULL, '971897402'),
-('20504595863', 'PESQUERA CANTABRIA S.A.', ' Amador Merino Reyna 339 – Of. 501  San Isidro', ' pkulisic@pesqueracantabria.com', '014225492'),
+('20504595863', 'PESQUERA CANTABRIA S.A.', ' Amador Merino Reyna 339 – Of. 501  San Isidro', ' pkulisic@pesqueracantabria.com', '014225492'),
 ('20114186199', 'PESQUERA SEÑOR DE LA JUSTICIA S.C.R.L', 'Av. Jose Pardo Nro. 650 Chimbote, Ancash, Peru', NULL, '43326796');
 
 -- --------------------------------------------------------
@@ -434,8 +510,34 @@ INSERT INTO `vehiculo` (`placa`, `marca`, `cod_configuracion`, `nro_contacto`, `
 ('T3X-970', 'INMPSAC', 'T3-S3', '958973920', 'DISPONIBLE'),
 ('B4G-989', 'KVR TRAILERS', 'T3-S1', '983728392', 'DISPONIBLE'),
 ('T9U-985', 'ARFAMET', 'T2-S2', '989736239', 'DISPONIBLE');
-COMMIT;
 
+
+ALTER TABLE `role_user`
+  ADD CONSTRAINT `role_user_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `role_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `permission_role`
+  ADD CONSTRAINT `permission_role_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `permission_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `carga`
+  ADD CONSTRAINT `carga_id_guia_id_foreign` FOREIGN KEY (`id_guia`) REFERENCES `guia_remision` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `chofer_guia`
+  ADD CONSTRAINT `chofer_id_foreign` FOREIGN KEY (`dni`) REFERENCES `chofer` (`dni`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `chofer_id_guia_id_foreign` FOREIGN KEY (`id_guia`) REFERENCES `guia_remision` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `factura`
+  ADD CONSTRAINT `factura_id_guia_id_foreign` FOREIGN KEY (`id_guia`) REFERENCES `guia_remision` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `factura_id_cliente_id_foreign` FOREIGN KEY (`RUC`) REFERENCES `cliente` (`RUC`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `guia_remision`
+  ADD CONSTRAINT `guia_id_vehiculo_id_foreign` FOREIGN KEY (`placa`) REFERENCES `vehiculo` (`placa`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ ALTER TABLE `ubicacion`
+  ADD CONSTRAINT `ubicacion_id_guia_id_foreign` FOREIGN KEY (`id_guia`) REFERENCES `guia_remision` (`id`) ON DELETE CASCADE ON UPDATE CASCADE; 
+
+COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
