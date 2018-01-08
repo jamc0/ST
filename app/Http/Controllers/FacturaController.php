@@ -21,7 +21,8 @@ class FacturaController extends Controller
 dd($cliente,$vehiculo,$guia_remision);
         return view('adminlte::venta.factura',compact('cliente', 'vehiculo', 'guia_remision'));
   }
-  //kjgldkfngkdfljgnjdfklngdj,fgndjfg
+
+
     public function RegistrarFactura(Request $request)
     {
        
@@ -29,12 +30,12 @@ dd($cliente,$vehiculo,$guia_remision);
        $data = $request->all();
 
         // dd($data);
-        $bresultado = GuiaRemision::GuardarFactura($data,Auth::user()->id);
+        $bresultado = Factura::GuardarFactura($data,Auth::user()->id);
 
         if ($bresultado) {
-            return redirect('Factura/GuiaRemision')->with('status','Se Registro la Factura Correctamente.');
+            return redirect('Factura/Factura')->with('status','Se Registro la Factura Correctamente.');
         } else {
-            return redirect('Factura/GuiaRemision')->with('erros','La Factura no ha sido registrada.');
+            return redirect('Factura/Factura')->with('erros','La Factura no ha sido registrada.');
         }
     }
 }

@@ -173,5 +173,5 @@ Route::get('grafica_registros_ventas/{anio}/{mes}',['as' =>'grafica_ventas' ,'us
 Route::get('Factura/GuiaRemision', ['as' => 'Factura/GuiaRemision', 'uses' => 'GuiaController@GenerarGuiaRemision']);
 Route::post('Factura/GuiaRemision', ['as' => 'Factura/GuiaRemision', 'uses' => 'GuiaController@RegistrarGuiaRemision']);
 
-Route::get('Factura/GuiaRemision', ['as' => 'asdasd', 'uses' => 'FacturasController@GenerarFactura']);
-Route::post('Factura/GuiaRemision', ['as' => 'asdasd', 'uses' => 'GuiaController@GuardarFactura']);
+Route::get('Factura/Factura2', ['as' => 'Factura/Factura2', 'uses' => 'FacturasController@GenerarFactura']);
+Route::post('Factura/Factura2', ['as' => 'Factura/Factura2', 'uses' => 'FacturasController@GuardarFactura']);

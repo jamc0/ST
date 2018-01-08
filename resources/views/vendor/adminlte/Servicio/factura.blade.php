@@ -73,7 +73,7 @@
 			<div class="col-md-10 col-md-offset-1">
 				<h3 class="text-center color-azul"><strong><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Registrar Factura&nbsp;<i class="fa fa-pencil-square" aria-hidden="true"></i></strong></h3>  
 
-				<form method="POST" action="{{url('Factura/GuiaRemision')}}" accept-charset="UTF-8" class="" id="RegistroFormFactura">
+				<form method="POST" action="{{url('Factura/Factura2')}}" accept-charset="UTF-8" class="" id="RegistroFormFactura">
 	        		<input name="_token" type="hidden" value="{{ csrf_token() }}">
 				
 
