@@ -170,8 +170,8 @@ Route::get('listado_graficas',['as' =>'listado_graficas','uses' =>  'GraficasCon
 Route::get('grafica_registros_personas/{anio}/{mes}',['as' =>'grafica_registros' ,'uses' => 'GraficasController@registros_mes']);
 Route::get('grafica_registros_ventas/{anio}/{mes}',['as' =>'grafica_ventas' ,'uses' => 'GraficasController@ventas_mes']);
 //-----------------
-Route::get('Factura/GuiaRemision', ['as' => 'Factura/GuiaRemision', 'uses' => 'GuiaController@GenerarGuiaRemision']);
-Route::post('Factura/GuiaRemision', ['as' => 'Factura/GuiaRemision', 'uses' => 'GuiaController@RegistrarGuiaRemision']);
+Route::get('Servicio/GuiaRemision', ['as' => 'Servicio/GuiaRemision', 'uses' => 'GuiaController@GenerarGuiaRemision']);
+Route::post('Servicio/GuiaRemision', ['as' => 'Servicio/GuiaRemision', 'uses' => 'GuiaController@RegistrarGuiaRemision']);
 
-Route::get('Factura/Factura2', ['as' => 'Factura/Factura2', 'uses' => 'FacturasController@GenerarFactura']);
-Route::post('Factura/Factura2', ['as' => 'Factura/Factura2', 'uses' => 'FacturasController@GuardarFactura']);
+Route::get('Servicio/Factura', ['as' => 'Servicio/Factura', 'uses' => 'FacturasController@GenerarFactura']);
+Route::post('Servicio/Factura', ['as' => 'Servicio/Factura', 'uses' => 'FacturasController@GuardarFactura']);

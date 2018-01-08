@@ -15,7 +15,6 @@ class GuiaController extends Controller
        
         $vehiculos = Vehiculo::Listar_Vehiculos();
         $guia_remision = GuiaRemision::Listar_GuiaRemision();
-        // return view('adminlte::pedido.boleta',compact('RUC','id_guia', 'fecha','total','descripcion','estado'));
         return view('adminlte::servicio.guia',compact('vehiculos', 'guia_remision'));
     }
 
@@ -23,13 +22,13 @@ class GuiaController extends Controller
     {
         $data = $request->all();
 
-        // dd($data);
+     
         $bresultado = GuiaRemision::GuardarGuiaRemision($data);
 
         if ($bresultado) {
-            return redirect('Factura/GuiaRemision')->with('status','Se Registro la Factura Correctamente.');
+            return redirect('Servicio/GuiaRemision')->with('status','Se Registro la Factura Correctamente.');
         } else {
-            return redirect('Factura/GuiaRemision')->with('erros','La Factura no ha sido registrada.');
+            return redirect('Servicio/GuiaRemision')->with('erros','La Factura no ha sido registrada.');
         }
     }
 }

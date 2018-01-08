@@ -94,12 +94,13 @@
                     <li><a href="{{url('listado_graficas')}}">Graficas</a></li>
                 </ul>
             </li>
-
+{{--aqui va servicios
+  --}}
             <li class="treeview">
-                <a href="#"><i class='sidebar-ventas fa fa-folder-open'></i> <span>Ventas/Pedidos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='sidebar-ventas fa fa-folder-open'></i> <span>Servicios/Transportes</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{url('Venta/Factura')}}">Boleta</a></li>
-                    <li><a href="{{url('Boleta/Pedido')}}">Pedido</a></li>
+                    <li><a href="{{url('Servicio/GuiaRemision')}}">Guia de remision</a></li>
+                    <li><a href="{{url('Servicio/Factura')}}">Factura</a></li>
                 </ul>
             </li>
 

@@ -73,7 +73,7 @@
 			<div class="col-md-10 col-md-offset-1">
 				<h3 class="text-center color-azul"><strong><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Registrar Factura&nbsp;<i class="fa fa-pencil-square" aria-hidden="true"></i></strong></h3>  
 
-				<form method="POST" action="{{url('Factura/Factura2')}}" accept-charset="UTF-8" class="" id="RegistroFormFactura">
+				<form method="POST" action="{{url('Servicio/Factura')}}" accept-charset="UTF-8" class="" id="RegistroFormFactura">
 	        		<input name="_token" type="hidden" value="{{ csrf_token() }}">
 				
 
@@ -110,39 +110,7 @@
 
 					<div class="col-sm-4">
 	                    <label class="color-azul">Día:</label>
-	                    <select class="form-control text-center" name="dia_factura" id="dia_factura">
-				            	<option value="1">1</option>
-				            	<option value="2">2</option>
-				            	<option value="3">3</option>
-				            	<option value="4">4</option>
-				            	<option value="5">5</option>
-				            	<option value="6">6</option>
-				            	<option value="7">7</option>
-				            	<option value="8">8</option>
-				            	<option value="9">9</option>
-				            	<option value="10">10</option>
-				            	<option value="11">11</option>
-				            	<option value="12">12</option>
-				            	<option value="13">13</option>
-				            	<option value="14">14</option>
-				            	<option value="15">15</option>
-				            	<option value="16">16</option>
-				            	<option value="17">17</option>
-				            	<option value="18">18</option>
-				            	<option value="19">19</option>
-				            	<option value="20">20</option>
-				            	<option value="21">21</option>
-				            	<option value="22">22</option>
-				            	<option value="23">23</option>
-				            	<option value="24">24</option>
-				            	<option value="25">25</option>
-				            	<option value="26">26</option>
-				            	<option value="27">27</option>
-				            	<option value="28">28</option>
-				            	<option value="29">29</option>
-				            	<option value="30">30</option>
-				            	<option value="31">31</option>
-				        </select>
+	                   <input type="text" class="form-control text-left"  id="dia_factura" name="dia_factura"  required placeholder="Día" maxlength="50" >
 	                </div>
 	                 <div class="col-sm-4">
 	                    <label class="color-azul">Mes:</label>
@@ -169,32 +137,36 @@
 				            	<option value="2019">2019</option>			            	
 	                    </select>
 	                </div>
-	               
-						                
-	                <div class="form-group row">
-                                    <div class="col-sm-6">
-                                    <br>
+	                </div>
+	               						                
+	                <div class="row">
+					<div class="col-md-6 col-sm-12">
+						<div class="form-group">
+						   <div class="col-sm-6.sm-12">
                                       <label class="color-azul ">Total:</label>
                                       <input type="text" class="form-control text-left"  id="total_factura" name="total_factura"  required placeholder="Total" maxlength="50" >
                                       <span  id ="ErrorMensaje-TotalFactura" class="help-block"></span>
                                     </div>
                                 </div>  
 
-    			<div class="row">
-				<div class="form-group row">
-                                    <div class="col-sm-6">
-                                    <br>
+       		                    <div class="col-sm-6-sm-12">
                                       <label class="color-azul ">Descripción:</label>
                                       <input type="text" class="form-control text-left"  id="descripcion" name="descripcion"  required placeholder="Total" maxlength="50" >
                                       <span  id ="ErrorMensaje-DescripcionFactura" class="help-block"></span>
                                     </div>
                                 </div>  
 
-    			<div class="row">
+               <div class="row">
 				<div class="col-lg-3 col-sm-3 col-xs-12">
 						<div class="form-group">
 				            	<label class="color-azul">Estado</label>
-				            	<input type="text"  name="estado" id="estado" class="form-control text-center" placeholder="Precio Venta ...">
+				            	{{-- <input type="text"  name="estado" id="estado" class="form-control text-center" placeholder="Precio Venta ..."> --}}
+								<select class="form-control text-center" name="estado" id="estado">
+				            	<option value="registrado">registrado</option>
+				            	<option value="cancelado">cancelado</option>
+				            	<option value="anulado">anulado</option>			            	
+	                    </select>
+
 				        </div>
 				</div>
 					<div class="row">
