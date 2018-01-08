@@ -64,6 +64,9 @@ Route::get('admin/Perfil', ['as' => 'admin/Perfil', 'uses' => 'PersonaController
 Route::get('Boleta/Pedido', ['as' => 'Boleta/Pedido', 'uses' => 'BoletaController@GenerarBoleta']);
 Route::post('Boleta/Pedido', ['as' => 'Boleta/Pedido', 'uses' => 'BoletaController@RegistrarBoleta']);
 
+// Route::get('Factura/GuiaRemision', ['as' => 'Factura/GuiaRemision', 'uses' => 'FacturaController@GenerarFactura']);
+// Route::post('Factura/GuiaRemision', ['as' => 'Factura/GuiaRemision', 'uses' => 'FacturaController@RegistrarFactura']);
+
 //Trasportes Crud
 
 
@@ -166,3 +169,9 @@ Route::get('reporte_ventas/{tipo}', 'PDFController@crear_reporte_ventas');
 Route::get('listado_graficas',['as' =>'listado_graficas','uses' =>  'GraficasController@Personas']);
 Route::get('grafica_registros_personas/{anio}/{mes}',['as' =>'grafica_registros' ,'uses' => 'GraficasController@registros_mes']);
 Route::get('grafica_registros_ventas/{anio}/{mes}',['as' =>'grafica_ventas' ,'uses' => 'GraficasController@ventas_mes']);
+//-----------------
+Route::get('Factura/GuiaRemision', ['as' => 'Factura/GuiaRemision', 'uses' => 'GuiaController@GenerarGuiaRemision']);
+Route::post('Factura/GuiaRemision', ['as' => 'Factura/GuiaRemision', 'uses' => 'GuiaController@RegistrarGuiaRemision']);
+
+Route::get('Factura/GuiaRemision', ['as' => 'asdasd', 'uses' => 'FacturasController@GenerarFactura']);
+Route::post('Factura/GuiaRemision', ['as' => 'asdasd', 'uses' => 'GuiaController@GuardarFactura']);

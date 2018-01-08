@@ -10,7 +10,7 @@
         <div class="login-box">
             <div class="login-logo">
 <i style="color: #009688" class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
-                <a href="{{ url('/') }}"><font color="#ffa000" face="Arial Black" size=20;>ACME</font></a>
+                <a href="{{ url('/') }}"><font color="#ffa000" face="Arial Black" size=20;>SecurityTrack</font></a>
 
 
 {{-- <h2 style="color: #ff9800" align="center";><font face="Arial Black" size=10;>ACME</font><i  style="color: #00897b"; class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></h2> --}}
