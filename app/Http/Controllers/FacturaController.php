@@ -21,7 +21,7 @@ class FacturaController extends Controller
 dd($cliente,$vehiculo,$guia_remision);
         return view('adminlte::venta.factura',compact('cliente', 'vehiculo', 'guia_remision'));
   }
-
+  //kjgldkfngkdfljgnjdfklngdj,fgndjfg
     public function RegistrarFactura(Request $request)
     {
        
